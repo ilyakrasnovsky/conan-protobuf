@@ -63,6 +63,9 @@ class ProtobufConan(ConanFile):
         self.copy("LICENSE", dst="licenses", src=self._source_subfolder)
         cmake = self._configure_cmake()
         cmake.install()
+        if (self.settings.os == "Linux" and self.settings.arch == "x86_64"):
+            os.rename(os.path.join(self.package_folder, "lib64"), os.path.join(self.package_folder, "lib"))
+            # self.copy(src="/".join((os.path.join(self.package_folder, "lib64"), "*")), dst="lib")
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
