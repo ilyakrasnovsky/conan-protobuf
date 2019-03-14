@@ -16,4 +16,4 @@ class TestPackageConan(ConanFile):
 
     def test(self):
         bin_path = os.path.abspath(os.path.join("bin", "test_package"))
-        self.run(bin_path, run_environment=True)
+        self.run(bin_path)
